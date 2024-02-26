@@ -95,11 +95,8 @@ class ContentView(generics.ListAPIView, APIView):
             # handle input
             input_helper = RequestInputHelper(data=data, user=user)
             input_helper.created_modified_by_patch()
-            print("Yo! 3")
             input_helper.content_patch_author()
-            print("Yo!")
             input_helper.content_categories_helper()
-            print("Yo! 2")
             data = input_helper.return_data()
 
             old_content = Content.objects.get(content_role_query & Q(content_id = content_id))

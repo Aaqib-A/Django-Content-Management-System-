@@ -5,11 +5,12 @@ from django.contrib.auth.admin import UserAdmin as AuthUserAdmin
 # TODO: remove username
 @admin.register(User)
 class UserAdmin(AuthUserAdmin):
-    list_display = ("user_id", "username", "email", "role", "is_superuser", "is_staff", "is_active")
+    list_display = ("user_id", "email", "role", "is_superuser", "is_staff", "is_active")
     search_fields = ["email", "first_name", "lastname"]
+    ordering = ['email']
 
     fieldsets = (
-        (None, {"fields": ("username", "email", "password", "role")}),
+        (None, {"fields": ("email", "password", "role")}),
         ("Personal info", {"fields": ("first_name", "last_name", "phone", "address", "city", "state", "country", "pincode")}),
         ("Permissions", {"fields": ("is_active", "is_superuser", "is_staff")}),
     )
@@ -17,7 +18,7 @@ class UserAdmin(AuthUserAdmin):
     add_fieldsets = (
         (None, {
             "classes": ("wide",),
-            "fields": ("username","role", "password1", "password2")}
+            "fields": ("role", "password1", "password2")}
         ),
         ("Personal info", {
             "classes": ("wide",),

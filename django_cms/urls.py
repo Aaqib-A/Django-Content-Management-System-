@@ -23,7 +23,8 @@ from user.views.login_view import CustomTokenView
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    re_path(r"authenticate/token/$", CustomTokenView.as_view(), name="token"),
+    # re_path(r'^authenticate/', include('oauth2_provider.urls', namespace='oauth2_provider')),
+    re_path(r"authenticate/token/$", CustomTokenView.as_view(), name="token"),    
 
     re_path('user/', include('user.urls')),
     re_path('content/', include('content.urls')),

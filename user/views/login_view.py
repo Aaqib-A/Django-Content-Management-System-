@@ -23,7 +23,7 @@ class CustomTokenView(TokenView):
                 app_authorized.send(sender=self, request=request,token=token)
                 body.pop("refresh_token")
                 body['user_id'] = str(token.user.user_id)
-                body['username'] = str(token.user.username)
+                # body['username'] = str(token.user.username)
                 body['email'] = token.user.email
                 body['role'] = token.user.role
                 body['phone'] = str(token.user.phone)
