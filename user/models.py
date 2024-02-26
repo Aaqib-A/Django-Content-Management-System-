@@ -15,12 +15,12 @@ class User(AbstractUser):
     email = models.EmailField(unique=True)
     role = models.CharField(max_length=8, choices=[(e.value, e.value) for e in ROLES])
     phone = PhoneNumberField(null=False, blank=False)
-    
+
     address = models.TextField(null=True, blank=True)
     city = models.CharField(max_length=32, null=True, blank=True)
     state = models.CharField(max_length=32, null=True, blank=True)
     country = models.CharField(max_length=32, null=True, blank=True)
-    pincode = models.DecimalField(max_digits=6, decimal_places=0, blank=True, null=True)
+    pincode = models.DecimalField(max_digits=6, decimal_places=0, blank=True, null=True) # TODO exact 6 digit
 
     # TODO password constrainsts
     # TODO replace username with email

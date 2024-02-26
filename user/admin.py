@@ -19,12 +19,12 @@ class UserAdmin(AuthUserAdmin):
             "classes": ("wide",),
             "fields": ("username","role", "password1", "password2")}
         ),
-        ("Permissions", {
-            "classes": ("wide",),
-            "fields": ("is_active", "is_superuser", "is_staff")}
-        ),
         ("Personal info", {
             "classes": ("wide",),
             "fields": ("first_name", "last_name", "phone", "address", "city", "state", "country", "pincode")}
+        ),
+        ("Permissions", {
+            "classes": ("wide",),
+            "fields": ("is_active", "is_superuser", "is_staff")}
         ),
     )
