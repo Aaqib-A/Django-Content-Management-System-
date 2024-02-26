@@ -25,7 +25,7 @@ SECRET_KEY = "django-insecure-&lwip89ndt0z%euqhu1ve%f6kg-$g0bs_7qz=hp*ncmwca5p&$
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -37,6 +37,20 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+
+    # Extra apps
+    'rest_framework',
+    'django_filters',
+
+    # For db model creation
+    'django_extensions',
+
+    # For Authentication
+    'oauth2_provider',
+    'corsheaders',
+
+    # Our apps
+    'user.apps.UserConfig',
 ]
 
 MIDDLEWARE = [
@@ -47,6 +61,8 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+
+    'corsheaders.middleware.CorsMiddleware', # For csrf  issue
 ]
 
 ROOT_URLCONF = "django_cms.urls"
@@ -105,7 +121,8 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = "en-us"
 
-TIME_ZONE = "UTC"
+# TIME_ZONE = "UTC"
+TIME_ZONE = 'Asia/Kolkata'
 
 USE_I18N = True
 
@@ -121,3 +138,31 @@ STATIC_URL = "static/"
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+AUTH_USER_MODEL = 'user.User'
+
+CORS_ORIGIN_ALLOW_ALL = True
+CORS_ORIGIN_WHITELIST = (
+  'http://localhost:3000',
+  'http://127.0.0.1:3000',
+)
+CORS_ALLOW_METHODS = (
+    'DELETE',
+    'GET',
+    'OPTIONS',
+    'POST',
+    'PUT',
+    'PATCH'
+)
+
+# For Authorization
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.SessionAuthentication',
+        'oauth2_provider.contrib.rest_framework.OAuth2Authentication'
+    ),
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+    )
+
+}
