@@ -17,7 +17,7 @@ class CustomTokenView(TokenView):
         if status == 200:
             body = json.loads(body)
             access_token = body.get("access_token")
-            print("access_token", access_token)
+            # print("access_token", access_token)
             if access_token is not None:
                 token = get_access_token_model().objects.get(token=access_token)
                 app_authorized.send(sender=self, request=request,token=token)

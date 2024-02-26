@@ -16,6 +16,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include, re_path
+from django.conf.urls.static import static
+from django.conf import settings
 
 from user.views.login_view import CustomTokenView
 
@@ -24,4 +26,8 @@ urlpatterns = [
     re_path(r"authenticate/token/$", CustomTokenView.as_view(), name="token"),
 
     re_path('user/', include('user.urls')),
-]
+    re_path('content/', include('content.urls')),
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) 
+
+admin.site.site_header = 'Architech\'s Content Management Server'
+

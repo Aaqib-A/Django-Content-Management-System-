@@ -20,9 +20,13 @@ class User(AbstractUser):
     city = models.CharField(max_length=32, null=True, blank=True)
     state = models.CharField(max_length=32, null=True, blank=True)
     country = models.CharField(max_length=32, null=True, blank=True)
-    pincode = models.DecimalField(max_digits=6, decimal_places=0, blank=True, null=True) # TODO exact 6 digit
+    pincode = models.DecimalField(max_digits=6, decimal_places=0) # TODO exact 6 digit
 
-    # TODO password constrainsts
+    # TODO password constraints
     # TODO replace username with email
+    # TODO first_name and last_name compulsary
     
     objects = MyUserManager()
+
+    def __str__(self):
+       return self.email

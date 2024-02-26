@@ -61,8 +61,6 @@ class UserView(generics.ListAPIView, APIView):
                 if user_serialized.is_valid():
                     user_serialized.save()
 
-                    # print(user_serialized)
-                    print(user_serialized.data)
                     user = User.objects.get(username = user_serialized.data["username"])
 
                     validate_password(password=password, user=user)
