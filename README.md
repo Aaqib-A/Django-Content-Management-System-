@@ -11,6 +11,7 @@ virtualenv -p python3 cms-env
 ```
 source cms-env/bin/activate
 pip install -r requirements.txt
+python manage.py migrate
 python manage.py createsuperuser
 python manage.py runserver
 ```
