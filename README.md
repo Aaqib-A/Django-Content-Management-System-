@@ -1,5 +1,6 @@
 # Django-Content-Management-System-
 
+<b>Note:</b> Code is in <i>"Stable"</i> branch
 
 # To Initialize this project
 ```
